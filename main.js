@@ -110,21 +110,6 @@ function render(t, dt) {
   CANVAS_CONTEXT.globalCompositeOperation = "lighter"
   CANVAS_CONTEXT.lineWidth = RING_WIDTH
 
-  // console.log(ANALYSER_BINS)
-
-  // low freq needs to be an eighth?
-
-  // high freq needs to be half
-  // next freq needs to be half of that
-  // this means that the lowest two frequencies are the same size
-  // which is still not correct
-
-  // a + 2a + 4a + 8a
-  // 15a
-
-  // 2^n - 1
-  // 
-
   for(let i = 0; i < NUMBER_OF_RINGS; i ++) {
     const
       n = Math.pow(2, NUMBER_OF_RINGS) - 1,
