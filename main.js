@@ -113,9 +113,9 @@ function render(t, dt) {
 
   for(let i = 0; i < NUMBER_OF_RINGS; i ++) {
     const
-      a = Math.floor( i      * ANALYSER_BINS.length / NUMBER_OF_RINGS),
-      b = Math.floor((i + 1) * ANALYSER_BINS.length / NUMBER_OF_RINGS),
-      value = average(ANALYSER_BINS, a, b) / 256,
+      a = Math.floor( i      * ANALYSER_BINS.length / (NUMBER_OF_RINGS + 1)),
+      b = Math.floor((i + 1) * ANALYSER_BINS.length / (NUMBER_OF_RINGS + 1)),
+      value = (avg(ANALYSER_BINS, a, b) + max(ANALYSER_BINS, a, b)) / 510,
       angle = 360 * i / NUMBER_OF_RINGS,
       dx = value * Math.cos((angle - 90) * DEG2RAD) * RING_TRAVEL,
       dy = value * Math.sin((angle - 90) * DEG2RAD) * RING_TRAVEL;
@@ -135,7 +135,23 @@ function render(t, dt) {
   }
 }
 
-function average(a, from, to) {
+function max(a, from, to) {
+  let max = a[from]
+  for(let i = from + 1; i < to; i ++)
+    if(from[i] > max)
+      max = from[i]
+  return max
+}
+
+function min(a, from, to) {
+  let min = a[from]
+  for(let i = from + 1; i < to; i ++)
+    if(from[i] < min)
+      min = from[i]
+  return min
+}
+
+function avg(a, from, to) {
   let sum = 0
   for(let i = from; i < to; i ++)
     sum += a[i]
