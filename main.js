@@ -113,8 +113,8 @@ function render(t, dt) {
 
   for(let i = 0; i < NUMBER_OF_RINGS; i ++) {
     const
-      a = Math.floor( i      * ANALYSER_BINS.length / (NUMBER_OF_RINGS + 1)),
-      b = Math.floor((i + 1) * ANALYSER_BINS.length / (NUMBER_OF_RINGS + 1)),
+      a = Math.floor((i + 1) * ANALYSER_BINS.length / (NUMBER_OF_RINGS + 2)),
+      b = Math.floor((i + 2) * ANALYSER_BINS.length / (NUMBER_OF_RINGS + 2)),
       value = (avg(ANALYSER_BINS, a, b) + max(ANALYSER_BINS, a, b)) / 510,
       angle = 360 * i / NUMBER_OF_RINGS,
       dx = value * Math.cos((angle - 90) * DEG2RAD) * RING_TRAVEL,
