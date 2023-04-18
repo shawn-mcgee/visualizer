@@ -1,0 +1,18 @@
+{
+  "name": "kiwi",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "devDependencies": {
+    "@types/lodash": "^4.14.194",
+    "vite": "^4.2.0"
+  },
+  "dependencies": {
+    "lodash": "^4.17.21"
+  }
+}
