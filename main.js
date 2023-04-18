@@ -99,7 +99,7 @@ function render(t, dt) {
 
     NUMBER_OF_RINGS = 9,
     RING_RADIUS = .25 * MIN,
-    RING_TRAVEL = .12 * MIN,
+    RING_TRAVEL = .25 * MIN,
     RING_WIDTH  = .06 * MIN,
     RING_SPEED  =  20;
 
