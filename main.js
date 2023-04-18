@@ -99,8 +99,9 @@ function render(t, dt) {
 
     NUMBER_OF_RINGS = 9,
     RING_RADIUS = .25 * MIN,
-    RING_TRAVEL = .25 * MIN,
-    RING_WIDTH  = .05 * MIN;
+    RING_TRAVEL = .12 * MIN,
+    RING_WIDTH  = .06 * MIN,
+    RING_SPEED  =  20;
 
   CANVAS_CONTEXT.globalCompositeOperation = "source-over"
   CANVAS_CONTEXT.fillStyle = "#000"
@@ -117,8 +118,8 @@ function render(t, dt) {
       b = Math.floor((i + 2) * ANALYSER_BINS.length / (NUMBER_OF_RINGS + 2)),
       value = (avg(ANALYSER_BINS, a, b) + max(ANALYSER_BINS, a, b)) / 510,
       angle = 360 * i / NUMBER_OF_RINGS,
-      dx = value * Math.cos((angle - 90) * DEG2RAD) * RING_TRAVEL,
-      dy = value * Math.sin((angle - 90) * DEG2RAD) * RING_TRAVEL;
+      dx = value * Math.cos((angle + RING_SPEED * t) * DEG2RAD) * RING_TRAVEL,
+      dy = value * Math.sin((angle + RING_SPEED * t) * DEG2RAD) * RING_TRAVEL;
     switch(i % 3) {
       case 0: CANVAS_CONTEXT.strokeStyle = "#f00"; break;
       case 1: CANVAS_CONTEXT.strokeStyle = "#0f0"; break;
