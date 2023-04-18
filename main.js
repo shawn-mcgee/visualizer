@@ -44,7 +44,7 @@ let ANALYSER_NODE
 let ANALYSER_BINS
 
 async function setup() {
-  await navigator.mediaDevices.getUserMedia({audio:true})
+  // await navigator.mediaDevices.getUserMedia({audio:true})
   await setupCanvas()
   await setupStream()
 }
