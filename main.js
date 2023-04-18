@@ -99,9 +99,9 @@ function render(t, dt) {
 
     NUMBER_OF_RINGS = 9,
     RING_RADIUS = .25 * MIN,
-    RING_TRAVEL = .25 * MIN,
+    RING_TRAVEL = .12 * MIN,
     RING_WIDTH  = .06 * MIN,
-    RING_SPEED  =  20;
+    RING_SPEED  =   6;
 
   CANVAS_CONTEXT.globalCompositeOperation = "source-over"
   CANVAS_CONTEXT.fillStyle = "#000"
@@ -112,11 +112,26 @@ function render(t, dt) {
 
   // console.log(ANALYSER_BINS)
 
+  // low freq needs to be an eighth?
+
+  // high freq needs to be half
+  // next freq needs to be half of that
+  // this means that the lowest two frequencies are the same size
+  // which is still not correct
+
+  // a + 2a + 4a + 8a
+  // 15a
+
+  // 2^n - 1
+  // 
+
   for(let i = 0; i < NUMBER_OF_RINGS; i ++) {
     const
-      a = Math.floor((i + 1) * ANALYSER_BINS.length / (NUMBER_OF_RINGS + 2)),
-      b = Math.floor((i + 2) * ANALYSER_BINS.length / (NUMBER_OF_RINGS + 2)),
-      value = (avg(ANALYSER_BINS, a, b) + max(ANALYSER_BINS, a, b)) / 510,
+      n = Math.pow(2, NUMBER_OF_RINGS) - 1,
+      a = Math.floor( ANALYSER_BINS.length * (Math.pow(2,           i    ) - 1) / n),
+      b = Math.floor( ANALYSER_BINS.length * (Math.pow(2,           i + 1) - 1) / n),
+      v = avg(ANALYSER_BINS, a, b) / 255,
+      value = v * v,
       angle = 360 * i / NUMBER_OF_RINGS,
       dx = value * Math.cos((angle + RING_SPEED * t) * DEG2RAD) * RING_TRAVEL,
       dy = value * Math.sin((angle + RING_SPEED * t) * DEG2RAD) * RING_TRAVEL;
